@@ -12,13 +12,20 @@ module.exports = {
         joinTo: 'css/app.css'
       }
     },
+    npm: {
+      globals: {
+        $: 'jquery',
+        jQuery: 'jquery'
+      }
+    },
     plugins: {
       elmBrunch: {
         outputFolder: 'server/static/dist/js'
       },
       sass: {
         mode: 'native'
-      }
+      },
+      uglify: {}
     }
   }
 };

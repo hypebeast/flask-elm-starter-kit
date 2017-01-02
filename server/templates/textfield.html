@@ -1,5 +1,16 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h1>About</h1>
+<h1 class="title">Text Field</h1>
+<h2 class="subtitle">A text field example.</h2>
+<hr>
+<div id="textfield-container"></div>
+{% endblock %}
+
+{% block js %}
+<script src="/static/dist/js/textfield.js" charset="utf-8"></script>
+<script type="text/javascript">
+  var node = document.getElementById('textfield-container');
+  var app = Elm.Textfield.embed(node);
+</script>
 {% endblock %}

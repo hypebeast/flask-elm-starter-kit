@@ -10,11 +10,15 @@
     "bulma": "^0.2.3",
     "elm-brunch": "^0.7.0",
     "hmr-brunch": "^0.1.1",
-    "sass-brunch": "^2.9.0"
+    "jquery": "^3.1.1",
+    "rimraf": "^2.5.4",
+    "sass-brunch": "^2.9.0",
+    "uglify-js-brunch": "^2.0.1"
   },
   "scripts": {
     "dev": "brunch watch",
     "build": "brunch build --production",
+    "clean": "rimraf ./server/static/dist",
     "postinstall": "elm package install -y"
   },
   "keywords": [

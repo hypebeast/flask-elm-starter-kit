@@ -4,13 +4,13 @@
 <h1 class="title">Counter</h1>
 <h2 class="subtitle">A simple counter build with Elm.</h2>
 <hr>
-<div id="counter"></div>
+<div id="counter-container"></div>
 {% endblock %}
 
 {% block js %}
-<script src="/static/dist/js/home.js" charset="utf-8"></script>
+<script src="/static/dist/js/counter.js" charset="utf-8"></script>
 <script type="text/javascript">
-  var node = document.getElementById('counter');
+  var node = document.getElementById('counter-container');
   var app = Elm.Counter.embed(node);
 </script>
 {% endblock %}
