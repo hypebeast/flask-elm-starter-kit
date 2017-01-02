@@ -6,7 +6,7 @@ This starter kit shows how to use [Elm](http://elm-lang.org/) with a Flask appli
 
 All pages are rendered on the server. Elm provides parts of the frontend instead of using plain Javascript. This example should how to use Elm in none single page applications and how to integrate it with existing Javascript code.
 
-![](./screenshoot.png)
+![](./screenshot.png)
 
 [Brunch](http://brunch.io/) is used as the build tool.
 
