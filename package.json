@@ -8,6 +8,7 @@
     "auto-reload-brunch": "^2.7.1",
     "brunch": "^2.9.1",
     "bulma": "^0.2.3",
+    "elm": "^0.18.0",
     "elm-brunch": "^0.7.0",
     "hmr-brunch": "^0.1.1",
     "jquery": "^3.1.1",
@@ -19,7 +20,7 @@
     "dev": "brunch watch",
     "build": "brunch build --production",
     "clean": "rimraf ./server/static/dist",
-    "postinstall": "elm package install -y"
+    "postinstall": "./node_modules/.bin/elm package install -y && npm build"
   },
   "keywords": [
     "elm",
