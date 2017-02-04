@@ -20,7 +20,7 @@
     "dev": "brunch watch",
     "build": "brunch build --production",
     "clean": "rimraf ./server/static/dist",
-    "postinstall": "elm package install -y && npm build"
+    "postinstall": "elm package install -y && npm run build"
   },
   "keywords": [
     "elm",
