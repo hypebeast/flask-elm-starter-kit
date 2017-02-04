@@ -8,6 +8,8 @@ All pages are rendered on the server. Elm provides parts of the frontend instead
 
 [Brunch](http://brunch.io/) is used as the build tool.
 
+[Demo](https://flaskelm-prod.herokuapp.com/)
+
 ![](./screenshot.png)
 
 ## Requirements
