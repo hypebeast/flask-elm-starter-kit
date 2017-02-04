@@ -29,7 +29,7 @@ Install all packages:
 ```
 $ npm install
 $ pip install -r requirements.txt
-$ export FLASK_APP=autoapp.py
+$ export FLASK_APP=server/app.py
 $ export FLASK_DEBUG=1
 ```
 
@@ -45,4 +45,17 @@ Run `brunch` in development mode:
 $ npm run dev
 ```
 
-Open your browser and go to `http://localhost:5000`.
+Open your browser and visit `http://localhost:5000`.
+
+
+## Heroku
+
+This application can be hosted on [Heroku](https://heroku.com). The provided `fabfile.py` helps you to setup the application on Heroku.
+
+To setup the application run the following command:
+
+```
+$ fab init
+```
+
+This will setup the application on Heroku.

@@ -8,6 +8,7 @@ import string
 from fabric.api import env, local, require
 from fabric.colors import cyan
 
+
 current_dir = os.getcwd()
 env.project_name = 'flaskelm'
 env.branch = 'master'
@@ -34,7 +35,7 @@ def create_secret_key():
 
 def serve():
     """Run development server."""
-    local('flask run')
+    local('FLASK_APP={} FLASK_DEBUG=1 flask run'.format(os.path.join(current_dir, 'server', 'app.py')))
 
 
 #######################################
@@ -50,7 +51,8 @@ def heroku_bootstrap():
 
     set_remotes()
 
-    for environment in env.environments:
+    #for environment in env.environments:
+    for environment in ['ci']:
         env.environment = environment
         env.app_name = '{}-{}'.format(env.project_name, env.environment)
         heroku_initialize_app()
@@ -65,31 +67,50 @@ def heroku_initialize_app():
 
 def heroku_create_app():
     """Create a new app on Heroku."""
-    require('environment')
     require('app_name')
 
     info('Creating new app: {}'.format(env.app_name))
 
     local('heroku create {} --buildpack heroku/python'.format(env.app_name))
-    local('heroku buildpacks:add --app {} --index 1 heroku/nodejs'.format(env.app_name, env.environment))
+    local('heroku buildpacks:add --app {} --index 1 heroku/nodejs'.format(env.app_name))
+
+
+def heroku_destroy_app():
+    require('environment')
+    require('project_name')
+
+    app_name = '{}-{}'.format(env.project_name, env.environment)
+    info('Deleting app: {}'.format(app_name))
+
+    local('heroku apps:destroy -c {} --app {}'.format(app_name, app_name))
 
 
 def heroku_configure_app():
     """Configure an app with a basic configuration."""
-    require('environment')
-    require('project_name')
+    require('app_name')
 
     info('Configure app: {}'.format(env.app_name))
+
+    local('heroku config:set NPM_CONFIG_PRODUCTION=false --app {}'.format(env.app_name))
 
 
 def set_remotes():
     """Set git remotes for Heroku repositories."""
     require('project_name')
+    require('environments')
     info('Setting up git remotes for Heroku...')
 
-    local('git remote add ci git@heroku.com:{}-ci.git'.format(env.project_name))
-    local('git remote add stage git@heroku.com:{}-stage.git'.format(env.project_name))
-    local('git remote add prod git@heroku.com:{}-prod.git'.format(env.project_name))
+    for environment in env.environments:
+        local('git remote add {} git@heroku.com:{}-{}.git'.format(environment, env.project_name, environment))
+
+
+def delete_remotes():
+    """Delete git remotes for Heroku repositories."""
+    require('environments')
+    info('Deleting git remotes for Heroku...')
+
+    for environment in env.environments:
+        local('git remote remove {}'.format(environment))
 
 
 def push():
@@ -122,16 +143,19 @@ def init():
 def ci():
     """Run fab ci [command]."""
     env.environment = 'ci'
+    env.app_name = '{}-{}'.format(env.project_name, env.environment)
     env.branch = 'master'
 
 
 def stage():
     """Run fab stage [command]."""
     env.environment = 'stage'
+    env.app_name = '{}-{}'.format(env.project_name, env.environment)
     env.branch = 'master'
 
 
 def prod():
     """Run fab prod [command]."""
     env.environment = 'prod'
+    env.app_name = '{}-{}'.format(env.project_name, env.environment)
     env.branch = 'master'
