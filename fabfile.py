@@ -51,8 +51,7 @@ def heroku_bootstrap():
 
     set_remotes()
 
-    #for environment in env.environments:
-    for environment in ['ci']:
+    for environment in env.environments:
         env.environment = environment
         env.app_name = '{}-{}'.format(env.project_name, env.environment)
         heroku_initialize_app()
