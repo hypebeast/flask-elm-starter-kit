@@ -4,7 +4,7 @@ A simple [Flask](http://flask.pocoo.org/) application with [Elm](http://elm-lang
 
 This starter kit shows how to use [Elm](http://elm-lang.org/) with a Flask application.
 
-All pages are rendered on the server. Elm provides parts of the frontend instead of using plain Javascript. This example should how to use Elm in none single page applications and how to integrate it with existing Javascript code.
+All pages are rendered on the server. Elm provides parts of the frontend instead of using plain Javascript. This example shows how to use Elm in none single page applications and how to integrate it with existing Javascript code.
 
 [Brunch](http://brunch.io/) is used as the build tool.
 
