@@ -61,3 +61,19 @@ $ fab init
 ```
 
 This will setup the application on Heroku.
+
+## Google App Engine
+
+This application can also be hosted on [Google App Engine (Flexible Environment)](https://cloud.google.com/appengine/docs/flexible/python/). The provided `app.yaml` contains a basic configuration
+
+To set up the application, do the following:
+
+* Follow the *Before you Begin* instructions at [Python Flexible Environment quickstart](https://cloud.google.com/appengine/docs/flexible/python/quickstart)
+* Ensure you have a project created in Google Cloud Console.
+* Run the following command in the project's root directory:
+
+```
+$ gcloud app deploy --project my-project-id-1234
+```
+
+
